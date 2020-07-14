@@ -4,7 +4,7 @@ import { cache } from "https://raw.githubusercontent.com/Skillz4Killz/Discordeno
 import { sendMessage, createEmoji } from "https://raw.githubusercontent.com/Skillz4Killz/Discordeno/v5/mod.ts"
 import { Guild } from "https://raw.githubusercontent.com/Skillz4Killz/Discordeno/v5/structures/guild.ts"
 
-const pingCommand = (message: Message, args: string[], guild: Guild) => {
+const pingCommand = (message: Message, args: string[], guild?: Guild) => {
   if (((args[0] as any) as Guild).emojis) return
   sendMessage(message.channel, "getting emojis")
   const emojis = ((args[0] as any) as Guild).emojis
