@@ -26,7 +26,7 @@ const move = async (message: Message, args: string[], guild?: Guild) => {
   for (let i = 0; i < guild2.emojis.length; i++) {
     if (!emojis[i].id) return
     // @ts-ignore
-    var request = new Request(emojiURL(emojis[i].id, emojis[i].animated))
+    var request = new Request(emojiURL(emojis[i].id, false))
     await fetch(request, {
       method: "GET",
       headers: headers,
@@ -34,7 +34,7 @@ const move = async (message: Message, args: string[], guild?: Guild) => {
       cache: "default",
     }).then((response) => {
       response.arrayBuffer().then((buffer) => {
-        var base64Flag = emojis[i].animated ? "data:image/gif;base64," : "data:image/png;base64,"
+        var base64Flag = "data:image/png;base64,"
         var imageStr = arrayBufferToBase64(buffer)
         createEmoji(guild.id, `${emojiNames[i]}`, base64Flag + imageStr, {
           reason: "imported",
